@@ -48,7 +48,7 @@
                     <button id="equalizer-btn" class="btn">🎛️ EQ</button>
                     <button id="playlist-btn" class="btn">📋 Playlist</button>
                     <button id="search-btn" class="btn">🔍 Search</button>
-                    <button id="game-btn" class="btn">🎮 Games</button>
+                    <button id="analytics-btn" class="btn">📊 Analytics</button>
                     <button id="record-btn" class="btn">⏺ Record</button>
                     <button id="screenshot-btn" class="btn">📸 Screenshot</button>
                 </div>
@@ -91,9 +91,9 @@
                 <canvas id="visualizer"></canvas>
                 <div id="three-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none;"></div>
                 
-                <!-- Game overlay -->
-                <div id="game-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; pointer-events: none;">
-                    <canvas id="game-canvas"></canvas>
+                <!-- Analytics overlay -->
+                <div id="analytics-overlay" style="position: absolute; top: 10px; right: 10px; width: 300px; height: auto; display: none; pointer-events: auto; background: rgba(0,0,0,0.8); border-radius: 10px; padding: 20px; color: white;">
+                    <div id="analytics-content"></div>
                 </div>
             </div>
         </main>
@@ -152,36 +152,55 @@
         </div>
     </div>
 
-    <!-- Games Modal -->
-    <div id="games-modal" class="modal" style="display: none;">
+    <!-- Analytics Modal -->
+    <div id="analytics-modal" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>🎮 Music Games</h3>
-                <button class="close-btn" id="close-games">×</button>
+                <h3>📊 Real-time Audio Analytics</h3>
+                <button class="close-btn" id="close-analytics">×</button>
             </div>
-            <div class="games-grid">
-                <div class="game-card" data-game="rhythm">
-                    <h4>🥁 Beat Catcher</h4>
-                    <p>Catch falling beats in rhythm!</p>
+            <div class="analytics-container">
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h4>🎵 Tempo Detection</h4>
+                        <div class="metric-value" id="bpm-value">-- BPM</div>
+                        <div class="metric-label">Beats Per Minute</div>
+                    </div>
+                    <div class="analytics-card">
+                        <h4>🎹 Key Detection</h4>
+                        <div class="metric-value" id="key-value">--</div>
+                        <div class="metric-label">Musical Key</div>
+                    </div>
+                    <div class="analytics-card">
+                        <h4>😊 Mood Analysis</h4>
+                        <div class="metric-value" id="mood-value">--</div>
+                        <div class="metric-label">Emotional Tone</div>
+                    </div>
+                    <div class="analytics-card">
+                        <h4>📈 Spectral Centroid</h4>
+                        <div class="metric-value" id="centroid-value">-- Hz</div>
+                        <div class="metric-label">Brightness</div>
+                    </div>
+                    <div class="analytics-card">
+                        <h4>🌊 Zero Crossing Rate</h4>
+                        <div class="metric-value" id="zcr-value">--</div>
+                        <div class="metric-label">Signal Texture</div>
+                    </div>
+                    <div class="analytics-card">
+                        <h4>💪 RMS Energy</h4>
+                        <div class="metric-value" id="rms-value">--</div>
+                        <div class="metric-label">Overall Power</div>
+                    </div>
                 </div>
-                <div class="game-card" data-game="frequency">
-                    <h4>🎵 Frequency Runner</h4>
-                    <p>Navigate through frequency waves!</p>
+                <div class="analytics-chart">
+                    <h4>🎶 Frequency Spectrum Analysis</h4>
+                    <canvas id="spectrum-chart" width="600" height="200"></canvas>
                 </div>
-                <div class="game-card" data-game="spectrum">
-                    <h4>🌈 Spectrum Snake</h4>
-                    <p>Control a snake that follows the music!</p>
+                <div class="analytics-controls">
+                    <button id="toggle-overlay" class="btn">📌 Toggle Overlay</button>
+                    <button id="export-analytics" class="btn">💾 Export Data</button>
+                    <button id="reset-analytics" class="btn">🔄 Reset</button>
                 </div>
-                <div class="game-card" data-game="particles">
-                    <h4>✨ Particle Shooter</h4>
-                    <p>Shoot particles that sync with beats!</p>
-                </div>
-            </div>
-            <div class="game-controls" style="display: none;">
-                <button id="start-game" class="btn">🎮 Start Game</button>
-                <button id="pause-game" class="btn">⏸️ Pause</button>
-                <button id="stop-game" class="btn">⏹️ Stop</button>
-                <div class="game-score">Score: <span id="current-score">0</span></div>
             </div>
         </div>
     </div>
@@ -250,8 +269,8 @@
     <!-- Include EQ and Search functionality -->
     <script src="js/eq-search-manager.js"></script>
     
-    <!-- Include Music Games -->
-    <script src="js/music-games.js"></script>
+    <!-- Include Audio Analytics -->
+    <script src="js/audio-analytics.js"></script>
     
     <!-- Include our JavaScript files as modules -->
     <script type="module" src="js/app.js"></script>

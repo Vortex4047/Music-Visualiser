@@ -449,16 +449,16 @@ class AppController {
             }, 100);
         }
         
-        // Initialize Music Games Controller
-        if (window.MusicGamesController) {
-            this.musicGamesController = new window.MusicGamesController();
-            console.log('🎮 Music Games Controller initialized');
+        // Initialize Audio Analytics Controller
+        if (window.AudioAnalyticsController) {
+            this.audioAnalyticsController = new window.AudioAnalyticsController();
+            console.log('📊 Audio Analytics Controller initialized');
         } else {
             // Retry after a short delay
             setTimeout(() => {
-                if (window.MusicGamesController) {
-                    this.musicGamesController = new window.MusicGamesController();
-                    console.log('🎮 Music Games Controller initialized (delayed)');
+                if (window.AudioAnalyticsController) {
+                    this.audioAnalyticsController = new window.AudioAnalyticsController();
+                    console.log('📊 Audio Analytics Controller initialized (delayed)');
                 }
             }, 100);
         }
@@ -489,9 +489,9 @@ class AppController {
                 this.visualizerManager.connectAnalyser(res.analyser);
                 this.trackInfoManager.displayTrackInfo(file, res.audio);
                 
-                // Connect analyser to music games controller
-                if (this.musicGamesController) {
-                    this.musicGamesController.setAnalyser(res.analyser);
+                // Connect analyser to audio analytics controller
+                if (this.audioAnalyticsController) {
+                    this.audioAnalyticsController.setAnalyser(res.analyser);
                 }
                 
                 // Set up audio event listeners
@@ -570,9 +570,9 @@ class AppController {
             this.visualizerManager.connectAnalyser(analyser);
             this.trackInfoManager.hideTrackInfo();
             
-            // Connect analyser to music games controller
-            if (this.musicGamesController) {
-                this.musicGamesController.setAnalyser(analyser);
+            // Connect analyser to audio analytics controller
+            if (this.audioAnalyticsController) {
+                this.audioAnalyticsController.setAnalyser(analyser);
             }
             
             micBtn.textContent = 'Stop Microphone';

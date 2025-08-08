@@ -828,69 +828,124 @@ footer {
     opacity: 0.7;
 }
 
-/* Modal Styles */
+/* Modern Glassmorphism Modal Styles */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
     z-index: 2000;
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: modalFadeIn 0.3s ease;
+    animation: modalFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-content {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 15px;
-    padding: 30px;
-    max-width: 90vw;
-    max-height: 90vh;
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    padding: 35px;
+    max-width: 95vw;
+    max-height: 95vh;
     overflow-y: auto;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    animation: modalSlideIn 0.3s ease;
+    box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.4),
+        0 0 50px rgba(96, 165, 250, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        var(--accent), 
+        var(--primary-color), 
+        var(--secondary-color)
+    );
+    background-size: 200% 100%;
+    animation: gradientShimmer 4s ease-in-out infinite;
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
 }
 
 .modal-header h3 {
     margin: 0;
-    color: var(--accent);
-    font-size: 1.5rem;
+    background: linear-gradient(135deg, var(--accent), var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-shadow: 0 4px 20px rgba(96, 165, 250, 0.3);
 }
 
 .close-btn {
-    background: none;
-    border: none;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--fg);
-    font-size: 2rem;
+    font-size: 1.5rem;
     cursor: pointer;
     padding: 0;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.close-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
     transition: all 0.3s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .close-btn:hover {
-    background: var(--accent);
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
     color: white;
-    transform: rotate(90deg);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    border-color: rgba(255, 107, 107, 0.5);
+}
+
+.close-btn:hover::before {
+    width: 100px;
+    height: 100px;
+}
+
+.close-btn:active {
+    transform: rotate(90deg) scale(0.95);
 }
 
 /* Equalizer Styles */
@@ -990,76 +1045,313 @@ footer {
     transform: translateY(-2px);
 }
 
-/* Games Styles */
-.games-grid {
+/* Analytics Styles - Modern Glassmorphism Design */
+.analytics-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.analytics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
-    margin: 20px 0;
+    margin: 25px 0;
 }
 
-.game-card {
-    background: var(--border-color);
-    border: 1px solid var(--accent);
-    border-radius: 10px;
-    padding: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.analytics-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 25px 20px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.game-card:hover {
-    background: var(--accent);
-    color: white;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+.analytics-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        var(--accent), 
+        var(--primary-color), 
+        var(--secondary-color)
+    );
+    background-size: 200% 100%;
+    animation: gradientShimmer 3s ease-in-out infinite;
 }
 
-.game-card h4 {
-    margin: 0 0 10px 0;
-    font-size: 1.2rem;
+.analytics-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from 0deg,
+        transparent,
+        rgba(255, 255, 255, 0.03),
+        transparent,
+        rgba(255, 255, 255, 0.03),
+        transparent
+    );
+    animation: rotate 8s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.game-card p {
-    margin: 0;
-    opacity: 0.8;
+.analytics-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.2),
+        0 0 40px rgba(96, 165, 250, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(96, 165, 250, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.analytics-card:hover::after {
+    opacity: 1;
+}
+
+.analytics-card h4 {
+    margin: 0 0 15px 0;
     font-size: 0.9rem;
+    color: var(--fg);
+    opacity: 0.9;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
 }
 
-.game-card.selected {
-    background: var(--accent);
-    color: white;
-    box-shadow: 0 0 20px var(--accent);
+.metric-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin: 15px 0;
+    text-shadow: 0 4px 20px rgba(96, 165, 250, 0.3);
+    font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, var(--accent), var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: metricPulse 2s ease-in-out infinite;
 }
 
-.game-controls {
+.metric-label {
+    font-size: 0.75rem;
+    color: var(--fg);
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+}
+
+.analytics-chart {
+    margin: 35px 0;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.analytics-chart::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    animation: chartShimmer 3s ease-in-out infinite;
+}
+
+.analytics-chart h4 {
+    margin: 0 0 25px 0;
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
+}
+
+#spectrum-chart {
+    max-width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.analytics-controls {
     display: flex;
     gap: 15px;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-color);
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     flex-wrap: wrap;
 }
 
-.game-score {
-    font-size: 1.1rem;
+.analytics-controls .btn {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--fg);
+    padding: 12px 20px;
+    border-radius: 25px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: 600;
-    color: var(--accent);
-    padding: 8px 16px;
-    background: var(--border-color);
-    border-radius: 20px;
-    border: 2px solid var(--accent);
+    position: relative;
+    overflow: hidden;
 }
 
-#game-canvas {
-    width: 100%;
-    height: 100%;
+.analytics-controls .btn::before {
+    content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    pointer-events: auto;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.analytics-controls .btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, var(--accent), var(--primary-color));
+    color: white;
+    box-shadow: 0 10px 30px rgba(96, 165, 250, 0.3);
+    border-color: var(--accent);
+}
+
+.analytics-controls .btn:hover::before {
+    left: 100%;
+}
+
+#analytics-overlay {
+    font-size: 12px;
+    line-height: 1.5;
+    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: overlaySlideIn 0.5s ease-out;
+}
+
+#analytics-overlay:hover {
+    background: rgba(0, 0, 0, 0.95) !important;
+    transform: scale(1.02);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(96, 165, 250, 0.1);
+}
+
+/* Advanced Animations */
+@keyframes gradientShimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes metricPulse {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes chartShimmer {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: -100%; }
+}
+
+@keyframes overlaySlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.analytics-card:hover .metric-value {
+    animation: none;
+    transform: scale(1.1);
+    text-shadow: 0 6px 30px rgba(96, 165, 250, 0.5);
+}
+
+/* Stagger animation for cards */
+.analytics-card:nth-child(1) { animation-delay: 0s; }
+.analytics-card:nth-child(2) { animation-delay: 0.1s; }
+.analytics-card:nth-child(3) { animation-delay: 0.2s; }
+.analytics-card:nth-child(4) { animation-delay: 0.3s; }
+.analytics-card:nth-child(5) { animation-delay: 0.4s; }
+.analytics-card:nth-child(6) { animation-delay: 0.5s; }
+
+.analytics-grid {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Animation keyframes */
@@ -1095,13 +1387,22 @@ footer {
         width: 25px;
     }
     
-    .games-grid {
-        grid-template-columns: 1fr;
+    .analytics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
     
-    .game-controls {
+    .analytics-controls {
         flex-direction: column;
         gap: 10px;
+    }
+    
+    .metric-value {
+        font-size: 1.5rem;
+    }
+    
+    #spectrum-chart {
+        height: 150px;
     }
 }
 
