@@ -225,6 +225,7 @@ class AppController {
         this.playlistManager = new PlaylistManager();
         this.equalizerManager = null;
         this.searchManager = null;
+        this.musicGamesController = null;
         this.micStream = null;
         this.isRecording = false;
         
@@ -447,6 +448,20 @@ class AppController {
                 }
             }, 100);
         }
+        
+        // Initialize Music Games Controller
+        if (window.MusicGamesController) {
+            this.musicGamesController = new window.MusicGamesController();
+            console.log('🎮 Music Games Controller initialized');
+        } else {
+            // Retry after a short delay
+            setTimeout(() => {
+                if (window.MusicGamesController) {
+                    this.musicGamesController = new window.MusicGamesController();
+                    console.log('🎮 Music Games Controller initialized (delayed)');
+                }
+            }, 100);
+        }
     }
     
     async handleFileUpload(e) {
@@ -473,6 +488,11 @@ class AppController {
                 const res = await this.audioController.loadFile(file);
                 this.visualizerManager.connectAnalyser(res.analyser);
                 this.trackInfoManager.displayTrackInfo(file, res.audio);
+                
+                // Connect analyser to music games controller
+                if (this.musicGamesController) {
+                    this.musicGamesController.setAnalyser(res.analyser);
+                }
                 
                 // Set up audio event listeners
                 this.setupAudioEventListeners(res.audio);
@@ -549,6 +569,11 @@ class AppController {
             
             this.visualizerManager.connectAnalyser(analyser);
             this.trackInfoManager.hideTrackInfo();
+            
+            // Connect analyser to music games controller
+            if (this.musicGamesController) {
+                this.musicGamesController.setAnalyser(analyser);
+            }
             
             micBtn.textContent = 'Stop Microphone';
             micBtn.classList.add('active');
