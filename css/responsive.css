@@ -1,0 +1,268 @@
+/* Responsive Styles for AI Music Visualizer */
+
+/* Extra Large Desktops */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1600px;
+  }
+  
+  header h1 {
+    font-size: 3.5rem;
+  }
+  
+  .visualization-container {
+    min-height: 700px;
+  }
+  
+  .controls {
+    padding: 25px;
+  }
+  
+  .btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+  }
+  
+  .visualization-info div {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+}
+
+/* Large Desktops */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1400px;
+  }
+  
+  header h1 {
+    font-size: 3rem;
+  }
+  
+  .visualization-container {
+    min-height: 600px;
+  }
+}
+
+/* Desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    max-width: 950px;
+  }
+  
+  header h1 {
+    font-size: 2.3rem;
+  }
+  
+  .visualization-container {
+    min-height: 500px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    padding: 15px;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  header p {
+    font-size: 1rem;
+  }
+  
+  .controls {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .input-controls {
+    justify-content: center;
+  }
+  
+  .visualization-info {
+    justify-content: center;
+  }
+  
+  .visualization-container {
+    min-height: 400px;
+  }
+}
+
+/* Large Phones */
+@media (min-width: 576px) and (max-width: 767px) {
+  .container {
+    padding: 15px;
+  }
+  
+  header {
+    margin-bottom: 20px;
+  }
+  
+  header h1 {
+    font-size: 1.8rem;
+  }
+  
+  header p {
+    font-size: 0.9rem;
+  }
+  
+  .controls {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .input-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .visualization-info {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .visualization-info div {
+    font-size: 0.8rem;
+  }
+  
+  .visualization-container {
+    min-height: 350px;
+  }
+  
+  footer {
+    margin-top: 20px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 575px) {
+  .container {
+    padding: 10px;
+  }
+  
+  header {
+    margin-bottom: 15px;
+    padding: 10px 0;
+  }
+  
+  header h1 {
+    font-size: 1.5rem;
+  }
+  
+  header p {
+    font-size: 0.8rem;
+  }
+  
+  .controls {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 10px;
+  }
+  
+  .input-controls {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+  
+  .visualization-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .visualization-info div {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+  
+  .visualization-container {
+    min-height: 300px;
+  }
+  
+  footer {
+    margin-top: 15px;
+    padding: 15px 0;
+    font-size: 0.75rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 320px) {
+  header h1 {
+    font-size: 1.3rem;
+  }
+  
+  .btn {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+  
+  .visualization-container {
+    min-height: 250px;
+  }
+  
+  .visualization-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .visualization-info div {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Landscape orientation for mobile devices */
+@media (max-width: 767px) and (orientation: landscape) {
+  .visualization-container {
+    min-height: 200px;
+  }
+  
+  header {
+    margin-bottom: 10px;
+  }
+  
+  .controls {
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  footer {
+    margin-top: 10px;
+    padding: 10px 0;
+  }
+}
+
+/* High resolution displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .btn {
+    font-weight: 500;
+  }
+  
+  header h1 {
+    font-weight: 700;
+  }
+  
+  .visualization-info span {
+    font-weight: 700;
+  }
+}

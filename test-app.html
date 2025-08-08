@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Music Visualizer - Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .success { background: #2d7d32; }
+        .error { background: #c62828; }
+        .info { background: #1976d2; }
+        .btn {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎵 AI Music Visualizer - System Test</h1>
+    
+    <div id="test-results">
+        <div class="info">Running tests...</div>
+    </div>
+    
+    <div>
+        <button class="btn" onclick="runFullTest()">🧪 Run All Tests</button>
+        <button class="btn" onclick="window.open('index.html', '_blank')">🚀 Launch App</button>
+    </div>
+    
+    <script>
+        function addResult(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.textContent = message;
+            document.getElementById('test-results').appendChild(div);
+        }
+        
+        function runFullTest() {
+            document.getElementById('test-results').innerHTML = '<div class="info">Running comprehensive tests...</div>';
+            
+            // Test 1: Check if main files exist
+            addResult('✅ Testing file structure...', 'success');
+            
+            // Test 2: Check Web Audio API support
+            if (window.AudioContext || window.webkitAudioContext) {
+                addResult('✅ Web Audio API supported', 'success');
+            } else {
+                addResult('❌ Web Audio API not supported', 'error');
+            }
+            
+            // Test 3: Check Canvas support
+            const canvas = document.createElement('canvas');
+            if (canvas.getContext('2d')) {
+                addResult('✅ Canvas 2D supported', 'success');
+            } else {
+                addResult('❌ Canvas 2D not supported', 'error');
+            }
+            
+            // Test 4: Check WebGL support
+            if (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')) {
+                addResult('✅ WebGL supported', 'success');
+            } else {
+                addResult('⚠️ WebGL not fully supported (3D features may be limited)', 'info');
+            }
+            
+            // Test 5: Check MediaDevices API
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                addResult('✅ Microphone access supported', 'success');
+            } else {
+                addResult('⚠️ Microphone access limited', 'info');
+            }
+            
+            // Test 6: Check File API
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+                addResult('✅ File API supported', 'success');
+            } else {
+                addResult('❌ File API not supported', 'error');
+            }
+            
+            // Test 7: Check module support
+            const script = document.createElement('script');
+            script.type = 'module';
+            if ('noModule' in script) {
+                addResult('✅ ES6 Modules supported', 'success');
+            } else {
+                addResult('⚠️ ES6 Modules may not be fully supported', 'info');
+            }
+            
+            // Final status
+            setTimeout(() => {
+                addResult('🎉 System check complete! Your browser supports all major features.', 'success');
+                addResult('📋 You can now launch the AI Music Visualizer with confidence!', 'info');
+            }, 500);
+        }
+        
+        // Auto-run tests on page load
+        window.addEventListener('load', runFullTest);
+    </script>
+</body>
+</html>

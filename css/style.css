@@ -1,0 +1,15 @@
+
+
+/* Extra controls styling */
+#extra-controls {
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#extra-controls label {
+    font-weight: bold;
+}
+#extra-controls select {
+    padding: 4px 8px;
+    border-radius: 4px;
+}

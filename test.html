@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Music Visualizer - Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #121212;
+            color: white;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success {
+            background: #28a745;
+        }
+        .error {
+            background: #dc3545;
+        }
+        .warning {
+            background: #ffc107;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Music Visualizer - System Check</h1>
+    <div id="results"></div>
+
+    <script>
+        const results = document.getElementById('results');
+        
+        function addResult(message, type = 'success') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.textContent = message;
+            results.appendChild(div);
+        }
+
+        // Test Web Audio API
+        if (window.AudioContext || window.webkitAudioContext) {
+            addResult('✓ Web Audio API supported');
+        } else {
+            addResult('✗ Web Audio API not supported', 'error');
+        }
+
+        // Test Canvas support
+        const canvas = document.createElement('canvas');
+        if (canvas.getContext && canvas.getContext('2d')) {
+            addResult('✓ Canvas 2D supported');
+        } else {
+            addResult('✗ Canvas 2D not supported', 'error');
+        }
+
+        // Test WebGL support
+        try {
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (gl) {
+                addResult('✓ WebGL supported');
+            } else {
+                addResult('⚠ WebGL not supported (3D effects may not work)', 'warning');
+            }
+        } catch (e) {
+            addResult('⚠ WebGL not supported (3D effects may not work)', 'warning');
+        }
+
+        // Test File API
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+            addResult('✓ File API supported');
+        } else {
+            addResult('✗ File API not supported', 'error');
+        }
+
+        // Test MediaDevices API for microphone
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            addResult('✓ Microphone access API supported');
+        } else {
+            addResult('⚠ Microphone access may not work', 'warning');
+        }
+
+        // Test ES6 modules
+        if (typeof Symbol !== 'undefined' && typeof Promise !== 'undefined') {
+            addResult('✓ Modern JavaScript features supported');
+        } else {
+            addResult('⚠ Some modern features not supported - please use a modern browser', 'warning');
+        }
+
+        addResult('System check complete! You can close this tab and open index.html', 'success');
+    </script>
+</body>
+</html>

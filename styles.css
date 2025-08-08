@@ -1,0 +1,34 @@
+
+
+.extra-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-top: 10px;
+}
+.extra-controls select, 
+.extra-controls button {
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    background: #333;
+    color: #fff;
+    cursor: pointer;
+}
+.extra-controls select {
+    background: #222;
+}
+body.theme-light {
+    background-color: #fff;
+    color: #000;
+}
+body.theme-dark {
+    background-color: #000;
+    color: #fff;
+}
+body.theme-neon {
+    background-color: #0f0f0f;
+    color: #0ff;
+}
