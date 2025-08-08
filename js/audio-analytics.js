@@ -33,6 +33,7 @@ class AudioAnalyticsController {
         
         this.initializeEventListeners();
         this.initializeAnalysis();
+        this.installScrollReveal();
     }
     
     initializeEventListeners() {
@@ -81,6 +82,27 @@ class AudioAnalyticsController {
                     break;
             }
         });
+    }
+    
+    installScrollReveal() {
+        // Add reveal-up class to cards and chart so they animate when scrolled into view
+        const revealables = [
+            ...document.querySelectorAll('.analytics-card'),
+            document.querySelector('.analytics-chart')
+        ].filter(Boolean);
+        revealables.forEach(el => el.classList.add('reveal-up'));
+
+        // Use IntersectionObserver for scroll-triggered animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, { root: this.modal?.querySelector('.modal-content') || null, threshold: 0.15 });
+
+        revealables.forEach(el => observer.observe(el));
+        this._revealObserver = observer;
     }
     
     initializeAnalysis() {
